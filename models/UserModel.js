@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
 });
 
 // UserSchema保存前置函数
-userSchema.pre('save', async function (next) {
+userSchema.pre("save", async function (next) {
   const salt = await genSalt();
   this.password = await hash(this.password, salt);
   next();
