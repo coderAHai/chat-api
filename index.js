@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import mongoose from 'mongoose'
+import authRoutes from './routers/AuthRoutes.js'
 
 dotenv.config()
 
@@ -18,9 +19,7 @@ app.use(cors({
 app.use(cookieParser())
 app.use(express.json())
 
-app.get('/', async (request, response) => { 
-  response.send('Hello,World!')
-})
+app.use("/api/auth", authRoutes);
 
 mongoose
   .connect(databaseURL)
