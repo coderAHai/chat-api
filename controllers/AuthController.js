@@ -127,11 +127,13 @@ export const addProfileImage = async (request, response, next) => {
     if (!request.file) {
       return response.status(400).send("File is required.");
     }
+    const { userId } = request;
     const date = Date.now();
-    const fileName = "uploads/profiles/" + date + request.file.originalname;
+    const suffix = request.file.originalname.split(".").pop();
+    const fileName = `uploads/profiles/${userId}_${date}.${suffix}`;
     renameSync(request.file.path, fileName);
     const user = await User.findByIdAndUpdate(
-      request.userId,
+      userId,
       { image: fileName },
       { new: true, runValidators: true }
     );
