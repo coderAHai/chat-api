@@ -7,6 +7,7 @@ import authRoutes from "./routers/AuthRoutes.js";
 import contactsRoutes from "./routers/ContactsRoutes.js";
 import setupSocket from "./socket.js";
 import messageRoutes from "./routers/MessageRoutes.js";
+import ChannelRoutes from "./routers/ChannelRoutes.js";
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/contacts", contactsRoutes);
 app.use("/api/message", messageRoutes);
+app.use("/api/channel", ChannelRoutes);
 
 mongoose
   .connect(databaseURL)
