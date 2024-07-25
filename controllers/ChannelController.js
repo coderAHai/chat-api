@@ -18,7 +18,7 @@ export const createChannel = async (request, response, next) => {
       name,
       members,
       admin: userId,
-    });
+    }).populate("admin");
     await channel.save();
     return response.status(201).json({ channel: channel });
   } catch (error) {
